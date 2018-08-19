@@ -109,5 +109,5 @@ def create_company():
 
 if __name__ == '__main__':
     #create_company()
-    data = get_company_by_zzcode('0201')
+    data = get_company_by_zzcode('0200')
     print data

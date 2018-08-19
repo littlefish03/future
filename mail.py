@@ -6,8 +6,38 @@ from email.mime.text import MIMEText
 from email.header import Header
  
 # 第三方 SMTP 服务
- 
+mail_host=""  #设置服务器
+mail_user=""    #用户名
+mail_pass=""   #口令
+
+
+sender = ''
+receivers = []  # 接收邮件，可设置为你的QQ邮箱或者其他邮箱
+
+def read_config():
+    """
+    config file:
+    #smtp server
+    #user name
+    #user password
+    #sender
+    #recevier
+
+    """
+    config_file = 'mail.txt'
+    f = open(config_file, 'r')
+    config = f.readlines()
+    f.close()
+    mail_host = config[0].strip('\n')
+    mail_user = config[1].strip('\n')
+    mail_pass = config[2].strip('\n')
+    sender = config[3].strip('\n')
+    receiver = config[4].strip('\n')
+    return mail_host, mail_user, mail_pass, sender, receiver
+
 def sendmail(header, msg):
+    mail_host, mail_user, mail_pass, sender, receiver = read_config()
+    receivers.append(receiver)
     try:
         message = MIMEText(msg, 'plain', 'utf-8')
         message['From'] = Header("lili", 'utf-8')
