@@ -24,7 +24,7 @@ def read_config():
     #recevier
 
     """
-    config_file = 'mail.txt'
+    config_file = '/home/code/future/mail.txt'
     f = open(config_file, 'r')
     config = f.readlines()
     f.close()

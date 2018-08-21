@@ -30,7 +30,7 @@ class Company(Base):
     zz3name = Column(String(48), nullable=True)
 
 # 初始化数据库连接:
-engine = create_engine('sqlite:///company.db')
+engine = create_engine('sqlite:////home/code/future/company.db')
 Base.metadata.create_all(engine)
 # 创建DBSession类型:
 DBSession = sessionmaker(bind=engine)

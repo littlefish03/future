@@ -20,6 +20,7 @@ csrc_code = ['01','02','03','04','05','06','07','08','09']
 def get_over_code(codes):
     total = 0
     over = 0
+    high_price_per = 0.0
     over_code = None
     for code in codes:
         data = utils.get_data_from_sina(code)
@@ -34,18 +35,21 @@ def get_over_code(codes):
             over += 1
             #去掉涨停
             if float(data[3])<1.08*float(data[1]):
-                over_code = data[0]
+                price_per = 100*(float(data[3])-float(data[1]))/float(data[1])
+                if high_price_per < price_per:
+                    high_price_per = price_per
+                    over_code = data[0]
     over_per = float(over)/total
     print total, over, over_per
     if over_per < 0.5:
         over_code = None
-    print over_per, over_code
+    print over_per
     return over_per, over_code
     
 def get_best_company():
     total = 0
     over = 0
-    best_code = None
+    best_code = ''
     all_code = ' '
     best_per = 0
     for zz1 in csrc_code:
@@ -62,7 +66,7 @@ def get_best_company():
                 if over_per > best_per:
                     best_per = over_per
                     best_code = over_code
-    print 'best code', total, over, best_code
+    print 'best code', total, over
     best_code += all_code
     return total, over, best_code
 
