@@ -44,7 +44,7 @@ def get_over_code(codes):
     if over_per < 0.5:
         over_code = None
     print over_per
-    return over_per, over_code
+    return over_per, over_code, high_price_per
     
 def get_best_company():
     total = 0
@@ -59,15 +59,16 @@ def get_best_company():
             if len(codes) < 10:
                 continue
             total += 1
-            over_per, over_code = get_over_code(codes)
+            over_per, over_code, price_per = get_over_code(codes)
             if over_per > 0.5:
                 over += 1
-                all_code += over_code+'\n'
+                all_code += over_code+' '+str(price_per)[:4]+'\n'
                 if over_per > best_per:
                     best_per = over_per
                     best_code = over_code
     print 'best code', total, over
     best_code += all_code
+    print best_code
     return total, over, best_code
 
 def cron_main():
