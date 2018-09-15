@@ -68,7 +68,7 @@ def get_best_company():
                     best_code = over_code
     print 'best code', total, over
     best_code += all_code
-    print best_code
+    # print best_code
     return total, over, best_code
 
 def cron_main():
