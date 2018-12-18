@@ -32,12 +32,13 @@ def read_config():
     mail_user = config[1].strip('\n')
     mail_pass = config[2].strip('\n')
     sender = config[3].strip('\n')
-    receiver = config[4].strip('\n')
-    return mail_host, mail_user, mail_pass, sender, receiver
+    receivers = config[4].strip('\n')
+    return mail_host, mail_user, mail_pass, sender, receivers
 
 def sendmail(header, msg):
-    mail_host, mail_user, mail_pass, sender, receiver = read_config()
-    receivers.append(receiver)
+    mail_host, mail_user, mail_pass, sender, reces = read_config()
+    for receiver in reces.split(' '):
+        receivers.append(receiver)
     try:
         message = MIMEText(msg, 'plain', 'utf-8')
         message['From'] = Header("lili", 'utf-8')
