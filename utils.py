@@ -32,6 +32,7 @@ return: stock data list:
     """
 
     base_url='http://hq.sinajs.cn/?format=text&list='
+    print(base_url)
     if code.strip()<'600000':
         sina_url = base_url+'sz'+code
     else:
@@ -45,4 +46,4 @@ return: stock data list:
 if __name__ == '__main__':
     code = '000063'
     data = get_data_from_sina(code)
-    print data
+    print(data)
